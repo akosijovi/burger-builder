@@ -3,12 +3,19 @@ import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = (props) => {
-    const dynamicIngredients = Object.keys(props.ingredients)
+    let dynamicIngredients = Object.keys(props.ingredients)
         .map(igKey => {
             return [...Array(props.ingredients[igKey])].map( (_, idx) => {
                 return <BurgerIngredient key={igKey + idx} type={igKey} />
             })
         })
+        .reduce( (arr, el) => {
+            return arr.concat(el);
+        }, [] );
+
+    if( dynamicIngredients.length === 0 ){
+        dynamicIngredients = <p>Please start adding ingredients!</p>;
+    }
 
     return (
         <div className={classes.Burger}>
