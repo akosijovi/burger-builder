@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 
 const burger = (props) => (
     <div></div>
