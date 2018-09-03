@@ -10,13 +10,18 @@ const axiosErrorHandler = (WrappedComponent, Axios) => {
         }
 
         componentWillMount () {
-            Axios.interceptors.request.use(req => {
+            this.reqInterceptor = Axios.interceptors.request.use(req => {
                 this.setState({errors: null});
                 return req;
             })
-            Axios.interceptors.response.use(null, error => {
+            this.resInterceptor = Axios.interceptors.response.use(null, error => {
                 this.setState({errors: error})
             })
+        }
+
+        componentWillUnmount () {
+            Axios.interceptors.request.eject(this.reqInterceptor);
+            Axios.interceptors.response.eject(this.resInterceptor);
         }
 
         clickHandler = () => {
