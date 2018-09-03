@@ -9,9 +9,10 @@ const axiosErrorHandler = (WrappedComponent, Axios) => {
             errors: null
         }
 
-        componentDidMount () {
+        componentWillMount () {
             Axios.interceptors.request.use(req => {
-                this.setState({errors: null})
+                this.setState({errors: null});
+                return req;
             })
             Axios.interceptors.response.use(null, error => {
                 this.setState({errors: error})
@@ -37,4 +38,4 @@ const axiosErrorHandler = (WrappedComponent, Axios) => {
     }
 }
 
-export default axiosErrorHandler
+export default axiosErrorHandler;
