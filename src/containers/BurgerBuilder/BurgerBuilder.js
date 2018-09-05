@@ -100,26 +100,30 @@ class BurgerBuilder extends Component {
         //     purchasing: false,
         // }
         // this.setState({...resetState});
-            this.setState({spinner: true});
-            const order = {
-                ingredients: this.state.ingredients,
-                totalPrice: this.state.totalPrice,
-                customer: {
-                    name: 'Jovi',
-                    address: {
-                        street: 'Test123',
-                        zipCode: '1234',
-                        country: 'Philippines'
-                    }
-                }
-            }
-            axios.post('/orders.json', order)
-                .then( response => {
-                    this.setState({spinner: false, purchasing: false})
-                })
-                .catch( error => {
-                    this.setState({spinner: false, purchasing: false})
-                })
+
+
+            // this.setState({spinner: true});
+            // const order = {
+            //     ingredients: this.state.ingredients,
+            //     totalPrice: this.state.totalPrice,
+            //     customer: {
+            //         name: 'Jovi',
+            //         address: {
+            //             street: 'Test123',
+            //             zipCode: '1234',
+            //             country: 'Philippines'
+            //         }
+            //     }
+            // }
+            // axios.post('/orders.json', order)
+            //     .then( response => {
+            //         this.setState({spinner: false, purchasing: false})
+            //     })
+            //     .catch( error => {
+            //         this.setState({spinner: false, purchasing: false})
+            //     })
+
+            this.props.history.push('/checkout');
     }
 
     render() {
@@ -132,7 +136,7 @@ class BurgerBuilder extends Component {
         }
         
         let ordersummary = null;
-        let burger = this.state.error ? <p style={{textAlign: 'center'}}>Error: The ingredients dropped on the way from the grocery.</p> : <Spinner />;
+        let burger = this.state.error ? <p style={{textAlign: 'center'}}>Error: The ingredients dropped on the way here from the grocery.</p> : <Spinner />;
 
         if(this.state.ingredients) {
             burger = (
