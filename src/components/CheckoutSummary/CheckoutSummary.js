@@ -1,44 +1,40 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import Burger from '../Burger/Burger';
 import Button from '../UI/Button/Button';
 import classes from './CheckoutSummary.css';
+import Aux from '../../hoc/Auxilary/Auxilary';
 
-class CheckoutSummary extends Component {
-
-    state = {
-        ingredients: {
-            bacon: 1,
-            salad: 1,
-            cheese: 1,
-            meat: 1,
-        }
+const checkoutSummary = (props) => {
+    let burger = <h1>Please create a burger first.</h1>;
+    if (props.ingredients) {
+        burger = (<Aux>
+            <h1>That burger looks delicious!</h1>
+            <Burger ingredients={props.ingredients} />
+        </Aux>);
     }
-
-    render() {
-        return (
-            <div
-                className={classes.CheckoutSummary}
-                style={{
-                    width: '100%',
-                }}>
-                <h1>That burger looks delicious!</h1>
-                <Burger ingredients={this.state.ingredients} />
-                <div>
-                    <Button
-                        clicked
-                        btnType="Danger">
-                            Cancel
-                    </Button>
-                    <Button
-                        clicked
-                        btnType="Success">
-                            Continue
-                    </Button>
-                </div>
+    return (
+        <div
+            className={classes.CheckoutSummary}
+            style={{
+                width: '100%',
+            }}>
+            {burger}
+            <div>
+                <Button
+                    btnType="Danger"
+                    clicked={props.checkoutCancelled}>
+                    Go back
+                </Button>
+                <Button
+                    btnType="Success"
+                    clicked={props.checkoutContinued}>
+                    Continue
+                </Button>
             </div>
-        )
-    }
+        </div>
+    )
+
 }
 
-export default CheckoutSummary;
+export default withRouter(checkoutSummary);
