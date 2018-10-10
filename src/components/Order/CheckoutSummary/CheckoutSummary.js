@@ -1,12 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Burger from '../Burger/Burger';
-import Button from '../UI/Button/Button';
+import Burger from '../../Burger/Burger';
+import Button from '../../UI/Button/Button';
 import classes from './CheckoutSummary.css';
-import Aux from '../../hoc/Auxilary/Auxilary';
+import Aux from '../../../hoc/Auxilary/Auxilary';
 
 const checkoutSummary = (props) => {
     let burger = <h1>Please create a burger first.</h1>;
+    console.log(props)
     if (props.ingredients) {
         burger = (<Aux>
             <h1>That burger looks delicious!</h1>
