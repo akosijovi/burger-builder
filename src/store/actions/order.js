@@ -4,7 +4,7 @@ import axios from '../../axios-orders';
 export const purchaseBurgerSuccess = (id, orderData) => {
     return {
         type: actionTypes.PURCHASE_BURGER_SUCCESS,
-        orderId: id,
+        orderID: id,
         orderData: orderData
     }
 }
@@ -29,7 +29,7 @@ export const purchaseBurger = (orderData) => {
             .then( response => {
                 // this.setState({loading: false, purchasing: false});
                 // this.props.history.push('/');
-                dispatch( purchaseBurgerSuccess(response.data, orderData) )
+                dispatch( purchaseBurgerSuccess(response.data.name, orderData) )
             })
             .catch( error => {
                 // this.setState({loading: false, purchasing: false})

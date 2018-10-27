@@ -8,11 +8,13 @@ import registerServiceWorker from './registerServiceWorker';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import burgerBuilder from './store/reducers/burgerBuilder';
-import order from './store/reducers/order';
+import burgerBuilderReducer from './store/reducers/burgerBuilder';
+import orderReducer from './store/reducers/order';
 
-// const reducer = combineReducers({});
-const reducer = burgerBuilder;
+const reducer = combineReducers({
+    burgerBuilder: burgerBuilderReducer,
+    order: orderReducer
+});
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers( 
