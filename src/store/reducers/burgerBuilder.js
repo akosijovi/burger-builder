@@ -52,7 +52,7 @@ const setIngredients = (state, action) => {
     return updateObject( state, updatedState );
 }
 
-const getIngredientsFailed = (state) => {
+const getIngredientsFailed = (state, action) => {
     return updateObject(state, {error: true});
 }
 
@@ -68,8 +68,8 @@ const reducer = (state = initialState, action) => {
             return setIngredients(state, action);
 
         case actionTypes.GET_INGREDIENTS_FAILED:
-            return getIngredientsFailed(state);
-            
+            return getIngredientsFailed(state, action);
+
         default:
             return state;
     }
